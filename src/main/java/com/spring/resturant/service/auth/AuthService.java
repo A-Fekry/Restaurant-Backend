@@ -6,6 +6,7 @@ import com.spring.resturant.dto.TokenDto;
 
 public interface AuthService {
 
+
     TokenDto login(ClientDto clientDto) throws RuntimeException;
 
     TokenDto createAccount(NewDto newDto) throws RuntimeException;

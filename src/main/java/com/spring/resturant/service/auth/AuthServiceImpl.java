@@ -46,6 +46,7 @@ public class AuthServiceImpl implements AuthService {
     public TokenDto createAccount(NewDto newDto) throws RuntimeException {
         Client client1 = clientService.getClientByName(newDto.getUserName());
         if (client1 != null) {
+
             throw new RuntimeException("used.username");
         }
         Client client2 = clientService.getClientByEmail(newDto.getEmail());
