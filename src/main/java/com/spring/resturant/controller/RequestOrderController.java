@@ -38,4 +38,9 @@ public class RequestOrderController {
         Client client = clientService.getClientByName(JwtTokenHandler.getUsername(token));
         return ResponseEntity.ok(requestOrderService.getOrdersByCustomerId(client.getId()));
     }
+
+    @GetMapping("/get-all")
+    ResponseEntity<List<RequestResponseDto>> getOrderById() {
+        return ResponseEntity.ok(requestOrderService.getOrdersForAdmin());
+    }
 }

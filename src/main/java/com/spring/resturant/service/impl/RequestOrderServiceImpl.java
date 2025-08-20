@@ -62,6 +62,11 @@ public class RequestOrderServiceImpl implements RequestOrderService {
     }
 
     @Override
+    public List<RequestResponseDto> getOrdersForAdmin() {
+        return RequestResponseMapper.INSTANCE.requestResponseDtoListToRequestResponseDtoList(requestOrderRepo.findAll());
+    }
+
+    @Override
     public List<RequestOrderDto> getOrdersCode(String code) {
         return RequestOrderMapper.INSTANCE.RequestOrderListToRequestOrderDtoList(requestOrderRepo.getRequestOrdersByCode(code));
     }

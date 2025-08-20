@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/create-account").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/swagger-ui/**").permitAll()
 
+                .requestMatchers(HttpMethod.GET, "/order/get-all").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/**").hasRole("USER")
                 .requestMatchers(HttpMethod.POST, "/order/**").hasRole("USER")
                 .requestMatchers(HttpMethod.PUT, "/order/**").hasRole("USER")
