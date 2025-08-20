@@ -40,4 +40,14 @@ public class ProductController {
     ResponseEntity<ProductResponseVm> getProductByLetters(@PathVariable("letters") String letters,@PathVariable("pageNo") Integer pageNo, @PathVariable("pageSize") Integer pageSize) throws SystemException {
         return ResponseEntity.ok(productService.getProductByLetters(letters,pageNo,pageSize));
     }
+
+    @DeleteMapping("/remove")
+    void removeProduct(@RequestBody ProductDto productDto) throws SystemException {
+        productService.deleteProduct(productDto.getId());
+    }
+
+    @PostMapping("/update")
+    ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) throws SystemException {
+        return ResponseEntity.ok(productService.updateProduct(productDto));
+    }
 }

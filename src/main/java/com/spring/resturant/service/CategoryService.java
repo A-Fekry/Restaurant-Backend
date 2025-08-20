@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CategoryService {
     CategoryDto saveCategory(CategoryDto categoryDto) throws SystemException;
-    Category updateCategory(CategoryDto categoryDto);
+    CategoryDto updateCategory(CategoryDto categoryDto);
     List<CategoryDto> getAllCategories();
     void deleteCategory(CategoryDto categoryDto);
     CategoryDto getCategoryByName(String name);

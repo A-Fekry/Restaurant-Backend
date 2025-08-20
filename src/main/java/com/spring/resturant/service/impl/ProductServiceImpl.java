@@ -52,12 +52,22 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto updateProduct(ProductDto productDto) {
-        return null;
+        Product product = productRepo.findByName(productDto.getName());
+        if(Objects.isNull(product)){
+            throw new RuntimeException("product.already.not.exist");
+        }
+        Product newProduct = ProductMapper.INSTANCE.mapProductDtoToProduct(productDto);
+
+        return ProductMapper.INSTANCE.mapProductToProductDto(productRepo.save(newProduct));
     }
 
     @Override
     public void deleteProduct(Integer id) {
-        productRepo.removeProductById(id);
+        ProductDto productDto = ProductMapper.INSTANCE.mapProductToProductDto(productRepo.findById(id).get());
+        if (productDto == null){
+            throw new RuntimeException("product.not.found");
+        }
+        productRepo.deleteById(id);
     }
 
     @Override
@@ -77,16 +87,6 @@ public class ProductServiceImpl implements ProductService {
         ProductResponseVm productResponseVm = new ProductResponseVm(ProductMapper.INSTANCE.mapProductListToProductDtoList(productPage.getContent())
         , productPage.getTotalElements());
         return productResponseVm;
-    }
-
-    @Override
-    public List<ProductDto> getProductByName(String productName) {
-        return List.of();
-    }
-
-    @Override
-    public List<ProductDto> getProductByPrice(double productPrice) {
-        return List.of();
     }
 
     @Override

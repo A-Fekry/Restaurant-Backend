@@ -16,8 +16,6 @@ public interface ProductService {
     List<ProductDto> SaveListOfProductDto(List<ProductDto> productDtoList);
     List<ProductDto> getProductsByIds(List<Integer> products);
     ProductResponseVm getProducts(Integer pageNo, Integer pageSize);
-    List<ProductDto> getProductByName(String productName);
-    List<ProductDto> getProductByPrice(double productPrice);
     ProductResponseVm getProductByCategoryID(Integer id,Integer pageNo,Integer pageSize);
     ProductResponseVm getProductByLetters(String letters,Integer pageNo,Integer pageSize) throws SystemException;
 

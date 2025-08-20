@@ -27,8 +27,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category updateCategory(CategoryDto categoryDto) {
-        return null;
+    public CategoryDto updateCategory(CategoryDto categoryDto) {
+        Category category = categoryRepo.findByName(categoryDto.getName());
+        if(!Objects.nonNull(category.getId())){
+            throw new RuntimeException("invalid.not.id");
+        }
+        Category category2 = CategoryMapper.INSTANCE.mapCategoryDtoToCategory(categoryDto);
+        return CategoryMapper.INSTANCE.mapCategoryToCategoryDto(categoryRepo.save(category2));
     }
 
     @Override
@@ -38,7 +43,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(CategoryDto categoryDto) {
-
+        Category category = categoryRepo.findByName(categoryDto.getName());
+        if(category == null){
+            throw new RuntimeException("category.not.found");
+        }
+        categoryRepo.delete(category);
     }
 
     @Override
