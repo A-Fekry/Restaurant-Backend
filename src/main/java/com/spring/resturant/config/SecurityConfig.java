@@ -30,11 +30,13 @@ public class SecurityConfig {
         http.authorizeHttpRequests(api -> api
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/create-account").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/swagger-ui/**").permitAll()
 
                 .requestMatchers(HttpMethod.GET, "/**").hasRole("USER")
                 .requestMatchers(HttpMethod.POST, "/order/**").hasRole("USER")
                 .requestMatchers(HttpMethod.PUT, "/order/**").hasRole("USER")
                 .requestMatchers(HttpMethod.DELETE, "/order/**").hasRole("USER")
+                .requestMatchers(HttpMethod.GET, "/order/get-by-id").hasRole("USER")
                 .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/**").hasRole("ADMIN")

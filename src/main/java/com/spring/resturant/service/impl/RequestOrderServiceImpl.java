@@ -3,8 +3,10 @@ package com.spring.resturant.service.impl;
 
 import com.spring.resturant.code.Generator;
 import com.spring.resturant.dto.RequestOrderDto;
+import com.spring.resturant.dto.RequestResponseDto;
 import com.spring.resturant.mapper.ProductMapper;
 import com.spring.resturant.mapper.RequestOrderMapper;
+import com.spring.resturant.mapper.RequestResponseMapper;
 import com.spring.resturant.models.Product;
 import com.spring.resturant.models.RequestOrder;
 import com.spring.resturant.models.sec.Client;
@@ -55,8 +57,8 @@ public class RequestOrderServiceImpl implements RequestOrderService {
     }
 
     @Override
-    public List<RequestOrderDto> getOrdersByCustomerId(Integer customerId) {
-        return List.of();
+    public List<RequestResponseDto> getOrdersByCustomerId(Integer customerId) {
+        return RequestResponseMapper.INSTANCE.requestResponseDtoListToRequestResponseDtoList(requestOrderRepo.getRequestOrdersByClientId(customerId));
     }
 
     @Override

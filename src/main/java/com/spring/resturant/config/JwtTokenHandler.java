@@ -27,7 +27,7 @@ public class JwtTokenHandler {
         return jwtParser;
     }
 
-    private JwtParser jwtParser;
+    private static JwtParser jwtParser;
 
     private String secret;
 
@@ -69,5 +69,11 @@ public class JwtTokenHandler {
         }
 
         return false;
+    }
+
+    public static String getUsername(String token) {
+        String newToken = token.substring(7);
+        Claims claims = jwtParser.parseClaimsJws(newToken).getBody();
+        return claims.getSubject();
     }
 }

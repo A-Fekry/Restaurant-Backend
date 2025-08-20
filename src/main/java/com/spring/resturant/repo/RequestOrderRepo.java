@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface RequestOrderRepo extends JpaRepository<RequestOrder, Integer> {
     List<RequestOrder> getRequestOrdersByCode(String code);
+
+    List<RequestOrder> getRequestOrdersByClientId(Integer clientId);
+
 }

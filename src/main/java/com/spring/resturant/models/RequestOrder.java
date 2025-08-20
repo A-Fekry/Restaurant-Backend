@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.sql.results.graph.Fetch;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class RequestOrder {
 
     private Integer quantity;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Product> products;
 
     @JsonIgnore
