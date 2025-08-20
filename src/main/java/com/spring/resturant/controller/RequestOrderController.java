@@ -25,9 +25,6 @@ public class RequestOrderController {
     private RequestOrderService requestOrderService;
 
 
-    @Autowired
-    private ClientService clientService;
-
     @PostMapping("/save")
     ResponseEntity<CodeVm> saveOrder(@RequestBody RequestOrderDto order) {
         return ResponseEntity.ok(new CodeVm(requestOrderService.saveOrder(order)));
@@ -35,8 +32,7 @@ public class RequestOrderController {
 
     @GetMapping("/get-by-id")
     ResponseEntity<List<RequestResponseDto>> getOrderById(@RequestHeader("Authorization") String token) {
-        Client client = clientService.getClientByName(JwtTokenHandler.getUsername(token));
-        return ResponseEntity.ok(requestOrderService.getOrdersByCustomerId(client.getId()));
+        return ResponseEntity.ok(requestOrderService.getOrdersByCustomerId(token));
     }
 
     @GetMapping("/get-all")

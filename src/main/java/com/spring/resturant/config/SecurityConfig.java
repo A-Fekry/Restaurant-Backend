@@ -33,8 +33,10 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/swagger-ui/**").permitAll()
 
                 .requestMatchers(HttpMethod.GET, "/order/get-all").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/contact/get-all").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/**").hasRole("USER")
                 .requestMatchers(HttpMethod.POST, "/order/**").hasRole("USER")
+                .requestMatchers(HttpMethod.POST, "/contact/**").hasRole("USER")
                 .requestMatchers(HttpMethod.PUT, "/order/**").hasRole("USER")
                 .requestMatchers(HttpMethod.DELETE, "/order/**").hasRole("USER")
                 .requestMatchers(HttpMethod.GET, "/order/get-by-id").hasRole("USER")

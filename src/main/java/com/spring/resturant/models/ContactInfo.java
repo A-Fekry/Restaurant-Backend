@@ -16,7 +16,10 @@ import lombok.Setter;
 public class ContactInfo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_info_seq")
+    @SequenceGenerator(name = "contact_info_seq", sequenceName = "CONTACT_INFO_SEQ", allocationSize = 1)
     private Long id;
+
 
     @Column(nullable = false)
     private String name;
@@ -29,7 +32,7 @@ public class ContactInfo {
     @Size(max = 1000)
     private String message;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CLIENT_ID")
     @JsonIgnore
     private Client client;

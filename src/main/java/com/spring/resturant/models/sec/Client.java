@@ -1,6 +1,8 @@
 package com.spring.resturant.models.sec;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.spring.resturant.models.ContactInfo;
 import com.spring.resturant.models.RequestOrder;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -44,4 +46,8 @@ public class Client {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles;
+
+    @OneToMany
+    @JsonIgnore
+    private List<ContactInfo> contactInfos;
 }

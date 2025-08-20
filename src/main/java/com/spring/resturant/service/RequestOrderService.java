@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RequestOrderService {
     String saveOrder(RequestOrderDto order);
-    List<RequestResponseDto> getOrdersByCustomerId(Integer customerId);
+    List<RequestResponseDto> getOrdersByCustomerId(String token);
     List<RequestResponseDto> getOrdersForAdmin();
     List<RequestOrderDto> getOrdersCode(String code);
     void checkCode(String code);

@@ -2,6 +2,7 @@ package com.spring.resturant.service.impl;
 
 
 import com.spring.resturant.code.Generator;
+import com.spring.resturant.config.JwtTokenHandler;
 import com.spring.resturant.dto.RequestOrderDto;
 import com.spring.resturant.dto.RequestResponseDto;
 import com.spring.resturant.mapper.ProductMapper;
@@ -57,8 +58,9 @@ public class RequestOrderServiceImpl implements RequestOrderService {
     }
 
     @Override
-    public List<RequestResponseDto> getOrdersByCustomerId(Integer customerId) {
-        return RequestResponseMapper.INSTANCE.requestResponseDtoListToRequestResponseDtoList(requestOrderRepo.getRequestOrdersByClientId(customerId));
+    public List<RequestResponseDto> getOrdersByCustomerId(String token) {
+        Client client = clientService.getClientByName(JwtTokenHandler.getUsername(token));
+        return RequestResponseMapper.INSTANCE.requestResponseDtoListToRequestResponseDtoList(requestOrderRepo.getRequestOrdersByClientId(client.getId()));
     }
 
     @Override
