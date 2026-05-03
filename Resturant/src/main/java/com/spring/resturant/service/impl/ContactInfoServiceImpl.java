@@ -31,6 +31,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
         contactInfo.setEmail(client.getEmail());
         contactInfo.setName(client.getName());
         contactInfo.setSubject(contact.getSubject());
+        contactInfo.setId(null);
         if (contact.getMessage().length() > 1000){
             throw new RuntimeException("your.message.is.very.long");
         }

@@ -3,7 +3,7 @@ spring:
     name: spring-start
 
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1521/orclpdb
+    url: jdbc:oracle:thin:@//oracle:1521/XEPDB1
     username: hr
     password: hr
     driver-class-name: oracle.jdbc.OracleDriver

@@ -24,7 +24,11 @@ public class ContactInfoController {
     }
 
     @PostMapping("/save")
-    public void saveContactInfo(@RequestBody ContactRequest contactRequest,@RequestHeader("Authorization") String token){
+    public ResponseEntity<?> saveContactInfo(@RequestBody ContactInfoDto contactInfoDto,@RequestHeader("Authorization") String token){
+        ContactRequest contactRequest = new ContactRequest();
+        contactRequest.setMessage(contactInfoDto.getMessage());
+        contactRequest.setSubject(contactInfoDto.getSubject());
         contactInfoService.saveContactInfo(contactRequest, token);
+        return null;
     }
 }

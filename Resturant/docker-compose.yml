@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  oracle:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: oracle-db
+    environment:
+      ORACLE_PASSWORD: oracle
+      APP_USER: hr
+      APP_USER_PASSWORD: hr
+    networks:
+      - app-network
+
+  app:
+    build: .
+    container_name: spring-app
+    ports:
+      - "8333:8333"
+    depends_on:
+      - oracle
+    networks:
+      - app-network
+
+networks:
+  app-network:

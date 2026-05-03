@@ -32,7 +32,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
+        String path = request.getRequestURI();
 
+        if (path.startsWith("/swagger-ui") ||
+                path.startsWith("/v3/api-docs") ||
+                path.startsWith("/webjars")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         // استخراج التوكن من الهيدر
         String token = getTokenFromRequest(request);
 

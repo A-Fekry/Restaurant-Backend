@@ -1,6 +1,6 @@
 package com.spring.resturant.dto;
 
-import com.spring.resturant.models.Product;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RequestResponseDto {
 
-    private List<Product> products;
+    private List<ProductDto> products;
     private Integer id;
     private String code;
     private Double totalPrice;
